@@ -1,0 +1,173 @@
+body {
+  background: hsl(224, 32%, 12%);
+  background-image: conic-gradient(from 0deg at 50% 50%,
+      blue,
+      purple,
+      purple,
+      blue);
+  background-blend-mode: multiply;
+  font-family: Impact, sans-serif;
+  /* overflow: hidden; */
+}
+
+.login-motion-container {
+  position: relative;
+  /* add this */
+  aspect-ratio: 1 / 1;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bg-image {
+  background-image: url(./Components/Vinal/citypop.png);
+  filter: blur(2px);
+  background-size: cover;
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  /* overcompensate for blur */
+  height: 120%;
+  /* overcompensate for blur */
+  z-index: 1;
+  /* lower z-index, so other elements will appear on top */
+}
+
+.login-card {
+  position: relative;
+  width: 40vh;
+  padding: 5vh 10vh;
+  padding-bottom: 2vh;
+  background-color: rgba(42, 35, 86, 0.75);
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5), 0px 0px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  z-index: 2;
+}
+.back-button {
+  position: absolute;
+  top: 0px;  /* adjust as needed */
+  left: 0px;  /* adjust as needed */
+  background: none;
+  border: none;
+  font-size: 20px;  /* adjust as needed */
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #E0D9F6;
+}
+
+.back-button:focus {
+  outline: none;  
+}
+
+.login-card h2 {
+  margin-top: 20px;
+  color: #E0D9F6;
+  font-size: small;
+  font-family: Impact, sans-serif;
+  cursor: pointer;
+}
+
+.login-card h2:hover {
+  color: #6ECBF5;
+
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+#login-form input[type="text"],
+#login-form input[type="password"]
+ {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #E0D9F6;
+  border-radius: 5px;
+  background-color: #2A2356;
+  color: #E0D9F6;
+  font-family: Impact, sans-serif;
+}
+
+#login-form input[type="submit"] {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #C252E1;
+  color: #E0D9F6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: Impact, sans-serif;
+  font-size: medium
+}
+
+#login-form input[type="submit"]:hover {
+  transform: scale(1.025);
+  transition: scale 1s 1s;
+}
+
+#signup-button {
+  margin-top: 15px;
+  background-color: transparent;
+  border: 2px solid #586AE2;
+  color: #586AE2;
+  font-family: Impact, sans-serif;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#signup-button:hover {
+  background-color: #586AE2;
+  border-color: #586AE2;
+  color: white;
+}
+
+#signup-button:focus {
+  outline: none;
+
+}
+
+
+
+.invalid {
+  margin-top: 20px;
+  font-family: Impact, sans-serif;
+  font-size: small;
+  color: #E0D9F6;
+  border-radius: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+  background-color: #ff0677;
+}
+
+.box {
+  border-color: blueviolet;
+  border-style: solid;
+  border-width: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+.child {
+  border-color: burlywood;
+  border-style: solid;
+  border-width: 5px;
+  width: fit-content;
+  pointer-events: auto;
+}
+
+.handle {
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+  cursor: move;
+}

@@ -1,0 +1,66 @@
+
+.music-list {
+  list-style: none;
+  list-style-type: none;
+  padding: 0;
+  margin: 0px;
+  /* background-color: blueviolet; */
+  height: 100vh;
+  width: 50vh;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+
+.music-list::-webkit-scrollbar {
+  width: 0;  /* For Chrome and Safari */
+} 
+
+.music-list {
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+  scrollbar-width: none;  /* For Firefox */
+}
+
+.music-item {
+  /* existing styles... */
+  margin-bottom: 10px;  /* This will add 20px of space below each item. */
+  margin-left: 5px;  /* This will add 20px of space below each item. */
+  margin-right: 5px;
+
+}
+
+.scroll-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 2px;
+  background-color: white;
+}
+
+/* For Webkit browsers like Chrome and Safari
+.music-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.music-list::-webkit-scrollbar-track {
+  background: #2A2356;
+
+  border-radius: 10px;
+}
+
+.music-list::-webkit-scrollbar-thumb {
+  background: #2A2356;
+  border-radius: 10px;
+}
+
+.music-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* For Firefox */
+/* .music-list {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+} */ 

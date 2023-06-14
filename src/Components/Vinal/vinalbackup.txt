@@ -1,0 +1,121 @@
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence } from "framer-motion"
+import { RiPlayListFill } from 'react-icons/ri'
+
+import { clearSongs, updateSong, updateSongsList, toggleShowSongs } from '../../State/SongSlice'
+import { useSelector, useDispatch } from 'react-redux'
+
+import AudioPlayer from '../Audio/AudioPlayer'
+import LogIn from '../Login/LogIn'
+import Music from '../Music/Music'
+
+import './Vinal.css'
+import '../Login/LogIn.css'
+
+function Vinal() {
+
+  const dispatch = useDispatch()
+  const { showSongs } = useSelector((state) => state.songs)
+
+  const musicVariants = {
+    hidden: { x: "-100vw" },
+    visible: {
+      x: 0,
+      transition: { type: 'spring', damping: 20, stiffness: 100 }
+    },
+    exit: { x: "-100vw", transition: { ease: 'easeInOut' } }
+  };
+
+  // Define the motion variants for the list items
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: index * 0.1 }
+    }),
+  };
+
+  const [MousePosition, setMousePosition] = useState({
+    xAxis: 0,
+    yAxis: 0
+  })
+
+  const containerRef = useRef()
+  const vinalRef = useRef()
+  const audioPlayerRef = useRef()
+
+
+  const handleMouseMove = (e) => {
+    let xAxis = -(window.innerWidth / 2 - e.pageX) / 120;
+
+    let yAxis = (window.innerHeight / 2 - e.pageY) / 120;
+    setMousePosition({ xAxis, yAxis })
+
+    vinalRef.current.style.transition = "none";
+
+  }
+
+  const handleMouseLeave = (e) => {
+    vinalRef.current.style.transition = "all 0.5s ease";
+    setMousePosition({
+      xAxis: 0,
+      yAxis: 0
+    })
+
+  }
+
+  const handleMouseEnter = (e) => {
+    // console.log(audioPlayerRef)
+    // audioPlayerRef.current.style.transform = 'translateZ(150px)';
+  }
+
+  return (
+    <>
+      <div className="container" ref={containerRef}
+        onMouseEnter={(e) => handleMouseEnter(e)}
+        onMouseLeave={(e) => handleMouseLeave(e)}
+        onMouseMove={(e) => handleMouseMove(e)}>
+
+        <motion.div className="vinal" ref={vinalRef} style={{ transform: `rotateY(${MousePosition.xAxis}deg) rotateX(${MousePosition.yAxis}deg)` }}>
+
+          {/* Playlist button */}
+          <div className='button-container' onClick={() => dispatch(toggleShowSongs())}>
+            <motion.div className='currentPlaylistButton'
+              whileHover={{
+                scale: 1.2,
+                transition: { duration: 0.2 },
+              }}
+              whileTap={{ scale: 0.9 }}
+            ><RiPlayListFill className='playlist-icon' />
+            </motion.div>
+
+          </div>
+
+          {/* AudioPlayer */}
+          <div className='audioPlayerContainer' ref={audioPlayerRef}>
+            <AudioPlayer />
+          </div>
+        </motion.div>
+
+
+        {showSongs && <motion.div
+          initial={{ opacity: 0}}
+          animate={{ opacity: 1}}
+          transition={{
+            opacity: { duration: 1, ease: "easeOut" }
+          }}
+        >
+          <Music />
+        </motion.div>
+        }
+
+      </div >
+      {/* <Music /> */}
+
+    </>
+  )
+
+}
+
+export default Vinal

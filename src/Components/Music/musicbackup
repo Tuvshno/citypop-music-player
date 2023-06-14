@@ -1,0 +1,61 @@
+import React, { useEffect, useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useSelector, useDispatch } from 'react-redux'
+import { clearSongs, updateSong, updateSongsList } from '../../State/SongSlice'
+
+const Music = () => {
+  const { songs, currentSong } = useSelector((state) => state.songs)
+  const [items, setItems] = useState(songs);
+
+  useEffect(() => {
+    setItems(songs);
+  }, [songs]) // add songs to useEffect dependencies so it runs whenever songs changes
+
+  useEffect(() => {
+    console.log('music list:', items);
+  }, [items]) // log items whenever it changes
+
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+
+    const itemsArray = Array.from(items);
+    const [reorderedItem] = itemsArray.splice(result.source.index, 1);
+    itemsArray.splice(result.destination.index, 0, reorderedItem);
+
+    setItems(itemsArray);
+  }
+
+  function handleOnBeforeCapture(before) {
+    if (before.draggableId === "draggable-div-id") {
+      before.preventDefault();
+    }
+  }
+
+  return (
+      <DragDropContext onDragEnd={handleOnDragEnd} onBeforeCapture={handleOnBeforeCapture}>
+        <Droppable droppableId="items">
+          {(provided) => (
+            <ul {...provided.droppableProps} ref={provided.innerRef}>
+              {items.map(({ id, title, artist, album, imgage_entity_tag, plays, date }, index) => (
+                <Draggable key={id} draggableId={id.toString()} index={index}>
+                  {(provided) => (
+                    <li
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                    >
+                      {title}
+                    </li>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
+
+  );
+};
+
+export default Music;
