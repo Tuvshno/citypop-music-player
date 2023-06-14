@@ -1,14 +1,21 @@
-const express = require('express');
-const mysql = require('mysql');
-const cors = require('cors');
-const bcrypt = require('bcrypt');
+import express from 'express';
+import mysql from 'mysql';
+import cors from 'cors'
+import bcrypt, { hash } from 'bcrypt'
 
 const db = mysql.createConnection({
-  host: 'localhost',        // replace with your MySQL host
-  user: 'root',             // replace with your MySQL username
-  password: 'Icanownu123',  // replace with your MySQL password
-  database: 'citypop'       // replace with your MySQL database name
+  host: 'citypop-instance.cidbzyetacgy.us-east-2.rds.amazonaws.com',
+  user: 'admin',      // your mysql username
+  password: 'Tuvshno1',  // your mysql password
+  database: 'citypop'
 });
+
+// const db = mysql.createConnection({
+//   host: process.env.MYSQL_HOST,
+//   user: process.env.MYSQL_USER,
+//   password: process.env.MYSQL_PASSWORD,
+//   database: process.env.MYSQL_DATABASE
+// });
 
 db.connect((err) => {
   if (err) {
@@ -110,9 +117,11 @@ app.post('/signup', function (req, res) {
 });
 
 
-const serverIP = '0.0.0.0';  // replace with your EC2 instance IP address or hostname
-const serverPort = process.env.PORT || 5000;
-
-app.listen(serverPort, serverIP, () => {
-  console.log(`Server started on ${serverIP}:${serverPort}`);
+// Listen on a port
+app.listen('5000', () => {
+  console.log('Server started on port 5000');
 });
+
+// app.listen(process.env.PORT, () => {
+//   console.log(`Server started on port ${process.env.PORT}`);
+// });
