@@ -34,7 +34,7 @@ function LogIn() {
     console.log(`logging in with ${username} and ${password}...`)
 
     try {
-      const response = await axios.post('http://localhost:5000/login', { username, password });
+      const response = await axios.post('http://3.145.204.124:5000/login', { username, password });
       console.log(response)
       if (response.status === 200) {
         console.log('logged in success');
@@ -85,7 +85,7 @@ function LogIn() {
   const checkForm = async (checkUsername, checkPassword) => {
     if (checkUsername && checkPassword) {
       console.log('submiiting to server')
-      const response = await axios.post('http://localhost:5000/username', { username });
+      const response = await axios.post('http://3.145.204.124:5000/username', { username });
       console.log(response)
       if (response.data) {
         console.log("User exists, retry signup");
@@ -93,7 +93,7 @@ function LogIn() {
       } else {
         console.log("User doesn't exist, proceed signup");
         try {
-          const response = await axios.post('http://localhost:5000/signup', { username, password });
+          const response = await axios.post('http://3.145.204.124:5000/signup', { username, password });
           if (response.status === 201) {
             console.log('Signup successful');
             dispatch(toggleShowLogIn())

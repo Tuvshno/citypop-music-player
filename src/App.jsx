@@ -20,7 +20,7 @@ function App() {
     const fetchSongs = async () => {
       try {
         console.log('fetching')
-        const response = await axios.get('http://localhost:5000/getsongs'); // replace with your api url
+        const response = await axios.get('http://3.145.204.124:5000/getsongs'); // replace with your api url
 
         // Shuffle the response data using the Fisher-Yates algorithm
         for (let i = response.data.length - 1; i > 0; i--) {
