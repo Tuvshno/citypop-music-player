@@ -4,7 +4,7 @@ import { BiArrowBack } from 'react-icons/bi'
 
 import { useState, useRef } from 'react'
 import { toggleShowLogIn, toggleIsLoggedIn, setGlobalUsername } from '../../State/LogInSlice'
-import { motion } from "framer-motion"
+import { color, motion } from "framer-motion"
 import { useDispatch } from 'react-redux'
 import axios from 'axios';
 
@@ -34,7 +34,7 @@ function LogIn() {
     console.log(`logging in with ${username} and ${password}...`)
 
     try {
-      const response = await axios.post('http://3.145.204.124:5000/login', { username, password });
+      const response = await axios.post('http:///login', { username, password });
       console.log(response)
       if (response.status === 200) {
         console.log('logged in success');
@@ -85,7 +85,7 @@ function LogIn() {
   const checkForm = async (checkUsername, checkPassword) => {
     if (checkUsername && checkPassword) {
       console.log('submiiting to server')
-      const response = await axios.post('http://3.145.204.124:5000/username', { username });
+      const response = await axios.post('http:///username', { username });
       console.log(response)
       if (response.data) {
         console.log("User exists, retry signup");
@@ -93,7 +93,7 @@ function LogIn() {
       } else {
         console.log("User doesn't exist, proceed signup");
         try {
-          const response = await axios.post('http://3.145.204.124:5000/signup', { username, password });
+          const response = await axios.post('http:///signup', { username, password });
           if (response.status === 201) {
             console.log('Signup successful');
             dispatch(toggleShowLogIn())
@@ -166,6 +166,7 @@ function LogIn() {
         className="login-card" >
         {/* <h2>WELCOME</h2> */}
         <form id="login-form" onSubmit={handleLogInSubmit} autoComplete="off">
+          <div className='login-warning'>Sign In/Sign Up Not Fully Supported Due To EC2 Cost. Continue As Guest.</div>
           <input type="text" onChange={(e) => handleUserChange(e)} id="username" placeholder="Username" required />
           <input type="password" onChange={(e) => handlePassChange(e)} id="password" placeholder="Password" required />
           {isInvalidLogin && <div className='invalid'>Invalid Username/Password</div>}

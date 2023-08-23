@@ -11,7 +11,7 @@ function Song(props) {
   const dispatch = useDispatch()
 
   const active = props.active
-  let url = 'https://d3ljcvel4d9gwx.cloudfront.net/' + props.picId + '.jpg'
+  let url = import.meta.env.VITE_CLOUDFRONT_IMG + props.picId + '.png'
 
   const handleClick = () => {
 

@@ -23,9 +23,8 @@
 }
 
 .music-item {
-  /* existing styles... */
-  margin-bottom: 10px;  /* This will add 20px of space below each item. */
-  margin-left: 5px;  /* This will add 20px of space below each item. */
+  margin-bottom: 10px; 
+  margin-left: 5px;  
   margin-right: 5px;
 
 }
@@ -38,29 +37,3 @@
   width: 2px;
   background-color: white;
 }
-
-/* For Webkit browsers like Chrome and Safari
-.music-list::-webkit-scrollbar {
-  width: 10px;
-}
-
-.music-list::-webkit-scrollbar-track {
-  background: #2A2356;
-
-  border-radius: 10px;
-}
-
-.music-list::-webkit-scrollbar-thumb {
-  background: #2A2356;
-  border-radius: 10px;
-}
-
-.music-list::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* For Firefox */
-/* .music-list {
-  scrollbar-width: thin;
-  scrollbar-color: #888 #f1f1f1;
-} */ 

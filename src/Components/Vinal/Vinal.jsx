@@ -49,7 +49,7 @@ function Vinal() {
 
   useEffect(() => {
     const img = new Image();
-    img.src = `https://d3ljcvel4d9gwx.cloudfront.net/${currentSong.id}.png`;
+    img.src = `${import.meta.env.VITE_CLOUDFRONT_IMG}${currentSong.id}.png`;
     console.log(getMostDominantColors(img.src))
     setLoadingImage(true);
     img.onload = () => {
@@ -120,6 +120,7 @@ function Vinal() {
     setMousePosition({
       xAxis: 0,
       yAxis: 0
+    
     })
 
   }

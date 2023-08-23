@@ -3,12 +3,6 @@ import mysql from 'mysql';
 import cors from 'cors'
 import bcrypt, { hash } from 'bcrypt'
 
-const db = mysql.createConnection({
-  host: 'citypop-instance.cidbzyetacgy.us-east-2.rds.amazonaws.com',
-  user: 'admin',      // your mysql username
-  password: 'Tuvshno1',  // your mysql password
-  database: 'citypop'
-});
 
 // const db = mysql.createConnection({
 //   host: process.env.MYSQL_HOST,
@@ -121,7 +115,3 @@ app.post('/signup', function (req, res) {
 app.listen('5000', () => {
   console.log('Server started on port 5000');
 });
-
-// app.listen(process.env.PORT, () => {
-//   console.log(`Server started on port ${process.env.PORT}`);
-// });

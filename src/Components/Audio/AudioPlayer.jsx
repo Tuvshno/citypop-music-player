@@ -6,7 +6,6 @@ import { CiPause1 } from 'react-icons/ci'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { clearSongs, playlistSongClick, updateSong, updateSongsList, nextSong, previousSong } from '../../State/SongSlice'
-
 const AudioPlayer = () => {
 
     const { songs, playlistSong, currentSong, showSongs, songIndex, volume } = useSelector((state) => state.songs)
@@ -20,6 +19,7 @@ const AudioPlayer = () => {
     const animationRef = useRef()
 
     const dispatch = useDispatch()
+
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current.duration);
@@ -41,7 +41,7 @@ const AudioPlayer = () => {
             const title = newSong.title.replace(/ /g, "%20");
             const artist = newSong.artist.replace(/ /g, "%20");
             let newURL = artist + "%20-%20" + title + '%20(' + newSong.date + ').mp3'
-            newURL = 'https://d3ljcvel4d9gwx.cloudfront.net/' + newURL
+            newURL = import.meta.env.VITE_CLOUDFRONT + newURL
 
             // Check if new song is the same as the currently playing song
             if (audioPlayer.current.src !== newURL) {
@@ -58,30 +58,6 @@ const AudioPlayer = () => {
         }
     }, [songIndex])
 
-
-    // useEffect(() => {
-
-    //     if (songIndex < songs.length && songIndex >= 0) {
-    //         const newSong = songs[songIndex]
-    //         console.log(newSong)
-
-    //         const title = newSong.title.replace(/ /g, "%20");
-    //         const artist = newSong.artist.replace(/ /g, "%20");
-    //         let newURL = artist + "%20-%20" + title + '%20(' + newSong.date + ').mp3'
-    //         newURL = 'https://d3ljcvel4d9gwx.cloudfront.net/' + newURL
-
-    //         audioPlayer.current.src = newURL;
-    //         audioPlayer.current.load();
-    //         // This is the new part - starting the playback when a new song is loaded.
-    //         audioPlayer.current.oncanplaythrough = () => {
-    //             setIsPlaying(true);
-    //             audioPlayer.current.play();
-    //             animationRef.current = requestAnimationFrame(whilePlaying);
-    //         }
-
-    //     }
-    // }, [songIndex])
-
     const calculateTime = (secs) => {
         const minutes = Math.floor(secs / 60);
         const returnedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
@@ -95,7 +71,9 @@ const AudioPlayer = () => {
             var title = currentSong.title.replace(/ /g, "%20");
             var artist = currentSong.artist.replace(/ /g, "%20");
             let newURL = artist + "%20-%20" + title + '%20(' + currentSong.date + ').mp3'
-            newURL = 'https://d3ljcvel4d9gwx.cloudfront.net/' + newURL
+            newURL = import.meta.env.VITE_CLOUDFRONT + newURL
+
+            console.log(newURL)
 
             audioPlayer.current.src = newURL;
             await audioPlayer.current.load();
@@ -141,7 +119,7 @@ const AudioPlayer = () => {
             var title = newSong.title.replace(/ /g, "%20");
             var artist = newSong.artist.replace(/ /g, "%20");
             let newURL = artist + "%20-%20" + title + '%20(' + newSong.date + ').mp3'
-            newURL = 'https://d3ljcvel4d9gwx.cloudfront.net/' + newURL
+            newURL = import.meta.env.VITE_CLOUDFRONT + newURL
 
             audioPlayer.current.src = newURL;
             audioPlayer.current.load();
@@ -160,7 +138,7 @@ const AudioPlayer = () => {
         var title = newSong.title.replace(/ /g, "%20");
         var artist = newSong.artist.replace(/ /g, "%20");
         let newURL = artist + "%20-%20" + title + '%20(' + newSong.date + ').mp3'
-        newURL = 'https://d3ljcvel4d9gwx.cloudfront.net/' + newURL
+        newURL = import.meta.env.VITE_CLOUDFRONT + newURL
 
         audioPlayer.current.src = newURL;
         audioPlayer.current.load();
